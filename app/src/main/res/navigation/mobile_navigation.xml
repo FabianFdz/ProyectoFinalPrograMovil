@@ -8,7 +8,27 @@
     <fragment
         android:id="@+id/nav_calendar"
         android:name="com.isc.petshopapp.ui.calendar.CalendarFragment"
-        android:label="@string/menu_calendar"
+        android:label="@string/menu_agendar_cita"
         tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/citasFragment"
+        android:name="com.isc.petshopapp.CitasFragment"
+        android:label="Mis Citas"
+        tools:layout="@layout/fragment_citas" />
+    <fragment
+        android:id="@+id/productosFragment"
+        android:name="com.isc.petshopapp.productosFragment"
+        android:label="Productos"
+        tools:layout="@layout/fragment_productos" />
+    <fragment
+        android:id="@+id/serviciosFragment"
+        android:name="com.isc.petshopapp.ServiciosFragment"
+        android:label="Servicios"
+        tools:layout="@layout/fragment_servicios" />
+    <fragment
+        android:id="@+id/ubicacionFragment"
+        android:name="com.isc.petshopapp.UbicacionFragment"
+        android:label="Nuestra Ubicación"
+        tools:layout="@layout/fragment_ubicacion" />
 
 </navigation>

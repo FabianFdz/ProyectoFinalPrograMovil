@@ -14,7 +14,6 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
 
-
 class CalendarFragment : Fragment() {
     private var _binding: FragmentCalendarBinding? = null
     private val binding get() = _binding!!
@@ -44,16 +43,15 @@ class CalendarFragment : Fragment() {
         binding.btFecha.setText("" + dia.toString() + "/" + mes.toString() + "/" + anno)
 
         binding.btFecha.setOnClickListener { obtenerFecha() }
-        binding.btHoraIni.setOnClickListener {obtenerHora()}
-        binding.btHoraFin.setOnClickListener { obtenerHora()}
-        binding.btCrearEvento.setOnClickListener { CrearEvento()}
-        binding.cbTodoDia.setOnClickListener { fijarHora()}
-
+        binding.btHoraIni.setOnClickListener { obtenerHora() }
+        binding.btHoraFin.setOnClickListener { obtenerHora() }
+        binding.btCrearEvento.setOnClickListener { CrearEvento() }
+        binding.cbTodoDia.setOnClickListener { fijarHora() }
 
         return root
     }
 
-    fun fijarHora(){
+    fun fijarHora() {
         if (this.binding.cbTodoDia.isChecked) {
             binding.btHoraIni.text="08:00 a.m."
             binding.btHoraFin.text="05:00 p.m."
@@ -74,9 +72,7 @@ class CalendarFragment : Fragment() {
         }
     }
 
-
-
-    fun obtenerFecha(){
+    fun obtenerFecha() {
         val local = LocalDate.now()
         mes = local.monthValue-1
         dia = local.dayOfMonth
@@ -94,9 +90,8 @@ class CalendarFragment : Fragment() {
         recogerFecha.show()
     }
 
-
-
-    fun obtenerHora(){val localTime: LocalTime = LocalTime.now()
+    fun obtenerHora() {
+        val localTime: LocalTime = LocalTime.now()
         //Variables para obtener la fecha actual
         val hora: Int = localTime.getHour()
         val minuto: Int = localTime.getMinute()
@@ -112,7 +107,6 @@ class CalendarFragment : Fragment() {
                     "p.m."
                 }
 
-
                 if (tipo === 1) {
                     hora_ini = hora
                     minu_ini = minuto
@@ -124,15 +118,13 @@ class CalendarFragment : Fragment() {
                 }
             }, hora, minuto, false
         )
-        recogerHora.show() }
+        recogerHora.show()
+    }
 
-
-
-
-    fun CrearEvento(){
+    fun CrearEvento() {
         var titulo=binding.etTitulo.text.toString()
-        var ubicacion=binding.etUbicacion.text.toString()
-        if (titulo.isNotEmpty() && ubicacion.isNotEmpty()) {
+        var descripcion=binding.etDescripcion.text.toString()
+        if (titulo.isNotEmpty() && descripcion.isNotEmpty()) {
             val calendarIntent = Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI)
             val beginTime = Calendar.getInstance()
             val endTime = Calendar.getInstance()
@@ -144,10 +136,7 @@ class CalendarFragment : Fragment() {
             calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.timeInMillis)
             calendarIntent.putExtra(CalendarContract.Events.TITLE, binding.etTitulo.text.toString())
             calendarIntent.putExtra(Intent.EXTRA_EMAIL, "test@mail.com")
-            calendarIntent.putExtra(
-                CalendarContract.Events.EVENT_LOCATION,
-                binding.etUbicacion.text.toString()
-            )
+            calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, descripcion)
 
             startActivity(calendarIntent)
         }

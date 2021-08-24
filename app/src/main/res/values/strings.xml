@@ -13,13 +13,28 @@
     <string name="login_btn">Ingresar</string>
     <string name="signup_btn">Registrarse</string>
 
-    <string name="menu_calendar">Calendario</string>
+    <!-- Agendar Cita -->
+    <string name="menu_agendar_cita">Agendar Cita</string>
     <string name="tv_titulo">Título</string>
     <string name="tv_ubicacion">Ubicacion</string>
     <string name="tv_fecha">Fecha</string>
     <string name="tv_todo_dia">Todo el Día</string>
     <string name="tv_h_ini">Inicia</string>
     <string name="tv_h_fin">Termina</string>
-    <string name="bt_crear">Crear evento</string>
+    <string name="bt_crear">Agendar cita</string>
+
+    <!-- Mis Citas -->
+    <string name="menu_citas">Mis Citas</string>
+
+    <!-- Productos -->
+    <string name="menu_productos">Productos</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- Servicios -->
+    <string name="menu_servicios">Servicios</string>
+
+    <!-- Ubicacion -->
+    <string name="menu_ubicacion">Ubicación</string>
 
 </resources>

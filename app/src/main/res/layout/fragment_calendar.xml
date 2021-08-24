@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:textAlignment="center"
+    android:padding="15dp"
     tools:context=".ui.calendar.CalendarFragment">
 
     <EditText
@@ -16,17 +17,20 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/et_ubicacion"
-        android:hint="@string/tv_ubicacion"
+        android:id="@+id/et_descripcion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="131dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:gravity="start|top"
+        android:hint="Servicios a solicitar... (ej. Corte)"
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/bt_fecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue_gray_light"
+        android:textColor="@color/text_secondary"
         android:text="@string/tv_fecha" />
 
     <CheckBox
@@ -34,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tv_todo_dia"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,6 +51,9 @@
             android:id="@+id/bt_hora_ini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_gray_light"
+            android:textColor="@color/text_secondary"
+            android:layout_marginRight="8dp"
             android:layout_weight="50"
             android:text="@string/tv_h_ini" />
 
@@ -54,6 +62,8 @@
             android:id="@+id/bt_hora_fin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue_gray_light"
+            android:textColor="@color/text_secondary"
             android:layout_weight="50"
             android:text="@string/tv_h_fin" />
 
@@ -63,5 +73,6 @@
         android:id="@+id/bt_crear_evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/bt_crear" />
 </LinearLayout>
