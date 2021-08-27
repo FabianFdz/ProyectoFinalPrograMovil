@@ -29,5 +29,10 @@
             android:icon="@drawable/ic_map"
             android:title="@string/menu_ubicacion" />
 
+        <item
+            android:id="@+id/perfilCliente"
+            android:icon="@drawable/ic_perfil"
+            android:title="@string/menu_perfil" />
+
     </group>
 </menu>

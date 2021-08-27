@@ -55,6 +55,7 @@
     <string name="et_Nombre">Nombre</string>
     <string name="et_Apellidos">Apellidos</string>
     <string name="et_Correo">Correo Electronico</string>
+    <string name="menu_perfil">Perfil</string>
 
 
 </resources>
