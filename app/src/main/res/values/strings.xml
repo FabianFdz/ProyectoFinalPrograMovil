@@ -37,4 +37,17 @@
     <!-- Ubicacion -->
     <string name="menu_ubicacion">Ubicación</string>
 
+    <!--Adicionar datos de clientes -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_cliente">Clientes</string>
+    <string name="etCedula">Cédula</string>
+    <string name="etNombre">Nombre</string>
+    <string name="etApellidos">Apellidos</string>
+    <string name="etEdad">Edad</string>
+    <string name="btAgregar">Agregar</string>
+    <string name="add_cliente">Agregar Cliente</string>
+    <string name="clienteadd">Cliente agregado</string>
+    <string name="clientefail">Faltan datos</string>
+
+
 </resources>

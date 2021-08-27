@@ -30,5 +30,23 @@
         android:name="com.isc.petshopapp.UbicacionFragment"
         android:label="Nuestra Ubicación"
         tools:layout="@layout/fragment_ubicacion" />
+    <fragment
+        android:id="@+id/nav_UpdateCliente"
+        android:name="com.isc.petshopapp.ui.calendar.cliente.UpdateCliente"
+        android:label="fragment_update_cliente"
+        tools:layout="@layout/fragment_update_cliente" >
+        <action
+            android:id="@+id/action_nav_UpdateCliente_to_nav_ListCliente"
+            app:destination="@id/nav_ListCliente" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_ListCliente"
+        android:name="com.isc.petshopapp.ui.calendar.cliente.ListCliente"
+        android:label="fragment_list_cliente2"
+        tools:layout="@layout/fragment_list_cliente2" >
+        <action
+            android:id="@+id/action_nav_ListCliente_to_nav_UpdateCliente"
+            app:destination="@id/nav_UpdateCliente" />
+    </fragment>
 
 </navigation>
