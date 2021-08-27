@@ -40,7 +40,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Adicionar datos de clientes -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_cliente">Clientes</string>
     <string name="etCedula">Cédula</string>
     <string name="etNombre">Nombre</string>
