@@ -33,8 +33,8 @@
     <fragment
         android:id="@+id/nav_UpdateCliente"
         android:name="com.isc.petshopapp.ui.calendar.cliente.UpdateCliente"
-        android:label="fragment_update_cliente"
-        tools:layout="@layout/fragment_update_cliente" >
+        android:label="@string/Actulizar_cliente"
+        tools:layout="@layout/fragment_update_cliente">
         <action
             android:id="@+id/action_nav_UpdateCliente_to_perfilCliente"
             app:destination="@id/perfilCliente" />
@@ -46,9 +46,9 @@
         tools:layout="@layout/fragment_servicio01" />
     <fragment
         android:id="@+id/perfilCliente"
-        android:name="com.isc.petshopapp.PerfilCliente"
-        android:label="fragment_perfil_cliente"
-        tools:layout="@layout/fragment_perfil_cliente" >
+        android:name="com.isc.petshopapp.ui.calendar.cliente.PerfilCliente"
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_perfil_cliente">
         <action
             android:id="@+id/action_perfilCliente_to_nav_UpdateCliente"
             app:destination="@id/nav_UpdateCliente" />
