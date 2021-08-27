@@ -36,22 +36,22 @@
         android:label="fragment_update_cliente"
         tools:layout="@layout/fragment_update_cliente" >
         <action
-            android:id="@+id/action_nav_UpdateCliente_to_nav_ListCliente"
-            app:destination="@id/nav_ListCliente" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_ListCliente"
-        android:name="com.isc.petshopapp.ui.calendar.cliente.ListCliente"
-        android:label="fragment_list_cliente2"
-        tools:layout="@layout/fragment_list_cliente2" >
-        <action
-            android:id="@+id/action_nav_ListCliente_to_nav_UpdateCliente"
-            app:destination="@id/nav_UpdateCliente" />
+            android:id="@+id/action_nav_UpdateCliente_to_perfilCliente"
+            app:destination="@id/perfilCliente" />
     </fragment>
     <fragment
         android:id="@+id/servicio01"
         android:name="com.isc.petshopapp.ui.servicio.Servicio01"
         android:label="fragment_servicio01"
         tools:layout="@layout/fragment_servicio01" />
+    <fragment
+        android:id="@+id/perfilCliente"
+        android:name="com.isc.petshopapp.PerfilCliente"
+        android:label="fragment_perfil_cliente"
+        tools:layout="@layout/fragment_perfil_cliente" >
+        <action
+            android:id="@+id/action_perfilCliente_to_nav_UpdateCliente"
+            app:destination="@id/nav_UpdateCliente" />
+    </fragment>
 
 </navigation>

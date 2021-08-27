@@ -7,24 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.isc.petshopapp.R
-import com.isc.petshopapp.databinding.FragmentListClienteBinding
+import com.isc.petshopapp.databinding.FragmentPerfilClienteBinding
 
+class PerfilCliente : Fragment() {
 
-class ListCliente : Fragment() {
-    private var _binding: FragmentListClienteBinding?=null
+    private var _binding: FragmentPerfilClienteBinding?=null
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentListClienteBinding.inflate(inflater,
-            container,false)
+        _binding = FragmentPerfilClienteBinding.inflate(inflater,container,false)
         val root: View = binding.root
 
-
+        binding.btAgregar.setOnClickListener{
+            findNavController().navigate(R.id.action_perfilCliente_to_nav_UpdateCliente)
+        }
 
 
         return root
     }
+
 }

@@ -49,6 +49,12 @@
     <string name="add_cliente">Agregar Cliente</string>
     <string name="clienteadd">Cliente agregado</string>
     <string name="clientefail">Faltan datos</string>
+    <string name="tv_foto">Foto de perfil</string>
+    <string name="Agregar">Actulizar perfil</string>
+    <string name="tv_titulo01">Perfil</string>
+    <string name="et_Nombre">Nombre</string>
+    <string name="et_Apellidos">Apellidos</string>
+    <string name="et_Correo">Correo Electronico</string>
 
 
 </resources>
