@@ -14,8 +14,12 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" /> <!-- Estos permisos se requieren para geolocalizacion -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Estos permisos se requieren para Guargar la foto en algún lugar directo -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Permisos para escribir en un medio externo -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
     <application
         android:allowBackup="true"
@@ -49,6 +53,17 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.PetShopApp.NoActionBar" />
+        <!-- Esto se requiere para buscar las imagenes capturadas de la cámara -->
+        <!-- ojo el archivo llamado file_paths en la carpeta xml -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 
 </manifest>
