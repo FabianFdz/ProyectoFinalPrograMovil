@@ -20,5 +20,6 @@ class ServicioRepository(private val servicioDao: ServicioDao){
 
             suspend fun deleteServicio(servicio: Servicio) {
                 servicioDao.deleteServicio(servicio)
+
     }
 }
