@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
@@ -25,6 +27,9 @@ class Servicio01 : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var myRecyclerView: RecyclerView
+    private lateinit var myRef: DatabaseReference
+
+    private lateinit var servicioViewModel: ServicioViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,18 +46,32 @@ class Servicio01 : Fragment() {
         reciclador.adapter = servicioAdapter
         reciclador.layoutManager = LinearLayoutManager(requireContext())
 
-        /*myRef = Firebase.database.getReference("servicio")
-        myRef.child("0").get().addOnSuccessListener {
-            if(it.exists()){
-                val nombre = it.child("nombre").value
-                val descripcion = it.child("descripcion").value
-                val imgUrl = it.child("imgUrl").value
-                val precio = it.child("precio").value
+        //myRef = Firebase.database.getReference("servicio")
+        //myRef.child("0").get().addOnSuccessListener {
+            //if(it.exists()){
+                //val nombre = it.child("nombre").value
+                //val descripcion = it.child("descripcion").value
+                //val imgUrl = it.child("imgUrl").value
+                //val precio = it.child("precio").value
 
-            }
-        }.addOnFailureListener{
-            Toast.makeText(this.context,"There are no services",Toast.LENGTH_SHORT).show()
-        }*/
+            //}
+        //}.addOnFailureListener{
+            //Toast.makeText(this,"There are no services",Toast.LENGTH_SHORT).show()
+        //}
+
+        //llenado de recyclerView
+        //Obtener la info de la tabla lugar vía el ServicioViewModel
+        ServicioViewModel = ViewModelProvider(this)
+            .get(ServicioViewModel::class.java)
+
+        //Ojo cómo se define la manera de actualzar...
+        servicioViewModel.getAllData.observe(viewLifecycleOwner,{
+                servicios -> servicioAdapter.setData(servicios)})
+
+
+
+
+
 
         return root
     }
