@@ -1,4 +1,4 @@
-package com.isc.petshopapp.ui.calendar
+package com.isc.petshopapp.ui.citas
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog

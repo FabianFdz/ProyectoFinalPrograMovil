@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:textAlignment="center"
     android:padding="15dp"
-    tools:context=".ui.calendar.CalendarFragment">
+    tools:context=".ui.citas.CalendarFragment">
 
     <EditText
         android:id="@+id/et_titulo"
