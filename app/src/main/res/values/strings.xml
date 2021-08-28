@@ -65,7 +65,6 @@
     <string name="etFin">Fin</string>
     <string name="menu_persona">ListCita</string>
     <string name="add_cita">Agregar Cita</string>
-    <string name="citafail">citafail</string>
     <string name="citaadd">Cita agregada</string>
     <string name="citafail">Faltan datos</string>
 
