@@ -19,8 +19,8 @@ class CitaAdapter: RecyclerView.Adapter<CitaAdapter.CitaViewHolder>() {
             itemBinding.tvDescripcion.text = cita.descripcion
             itemBinding.tvFecha.text = cita.fecha
             itemBinding.vistaFila.setOnClickListener {
-                val action = ListCitaDirections.actionNavListCitaToNavUpdateCita(cita)
-                itemView.findNavController().navigate(action)
+                //val action = ListCitaDirections.actionNavListCitaToNavUpdateCita(cita)
+                //itemView.findNavController().navigate(action)
             }
         }
     }
