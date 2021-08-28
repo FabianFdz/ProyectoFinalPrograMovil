@@ -1,5 +1,8 @@
 package com.isc.petshopapp.model
 
+import androidx.room.Entity
+
+@Entity(tableName ="cita")
 data class Cita(
   val id: String?,
   val descripcion: String?,
