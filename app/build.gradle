@@ -52,7 +52,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 // Esto es para la parte de gps y camara
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-
+    implementation 'androidx.camera:camera-camera2:1.1.0-alpha06'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
