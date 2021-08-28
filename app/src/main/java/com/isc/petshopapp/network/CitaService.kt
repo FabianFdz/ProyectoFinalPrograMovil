@@ -1,22 +1,22 @@
 package com.isc.petshopapp.network
 
-import com.isc.petshopapp.model.Servicio
+import com.isc.petshopapp.model.Cita
 import retrofit2.Call
 import retrofit2.http.*
 
 interface CitaService {
   @GET("citas/getAll")
-  fun getCitas(): Call<List<Servicio?>?>?
+  fun getCitas(): Call<List<Cita?>?>?
 
   @GET("citas/get/{id}")
-  fun getServicio(@Path("id") id: String?): Call<Servicio?>?
+  fun getCita(@Path("id") id: String?): Call<Cita?>?
 
   @POST("citas/add")
-  fun addServicio(@Body cita: Servicio?): Call<Servicio?>?
+  fun addCita(@Body cita: Cita?): Call<Cita?>?
 
   @PUT("citas/edit")
-  fun updateServicio(@Body cita: Servicio?): Call<Servicio?>?
+  fun updateCita(@Body cita: Cita?): Call<Cita?>?
 
   @DELETE("citas/delete/{id}")
-  fun deleteServicio(@Path("id") id: String): Call<Servicio?>?
+  fun deleteCita(@Path("id") id: String): Call<Cita?>?
 }

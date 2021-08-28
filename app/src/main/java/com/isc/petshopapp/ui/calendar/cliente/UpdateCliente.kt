@@ -64,10 +64,6 @@ class UpdateCliente : Fragment() {
     clienteViewModel = ViewModelProvider(this)
       .get(ClienteViewModel::class.java)
 
-
-    clienteViewModel = ViewModelProvider(this)
-      .get(ClienteViewModel::class.java)
-
     val getCall = clienteViewModel.getCliente()
     manageGetCliente(getCall, this.context)
 

@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/servicio01"
         android:name="com.isc.petshopapp.ui.servicio.Servicio01"
-        android:label="fragment_servicio01"
+        android:label="Nuestros Servicios"
         tools:layout="@layout/fragment_servicio01" />
     <fragment
         android:id="@+id/perfilCliente"

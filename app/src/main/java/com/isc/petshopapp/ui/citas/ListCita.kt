@@ -39,8 +39,8 @@ class ListCita :  Fragment() {
             .get(CitaViewModel::class.java)
 
 
-      //  citaViewModel.getAllData.observe(viewLifecycleOwner,{
-      //          citas -> citaAdapter.setData(citas)})
+        citaViewModel.getAllData.observe(viewLifecycleOwner,{
+                citas -> citaAdapter.setData(citas)})
 
 
         return root

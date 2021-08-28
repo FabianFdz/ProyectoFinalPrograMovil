@@ -63,7 +63,7 @@
     <string name="etFecha">Fecha</string>
     <string name="etInicio">Inicio</string>
     <string name="etFin">Fin</string>
-    <string name="menu_persona">ListCita</string>
+    <string name="menu_persona">Mis Citas</string>
     <string name="add_cita">Agregar Cita</string>
     <string name="citaadd">Cita agregada</string>
     <string name="citafail">Faltan datos</string>

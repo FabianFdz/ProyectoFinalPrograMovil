@@ -10,7 +10,7 @@ import com.isc.petshopapp.ui.citas.ListCitaDirections
 
 class CitaAdapter: RecyclerView.Adapter<CitaAdapter.CitaViewHolder>() {
 
-    private var listaCitas = emptyList<Cita>()
+    private var listaCitas = emptyList<Cita?>()
 
     inner class CitaViewHolder(private val itemBinding: CitaFilaBinding):
         RecyclerView.ViewHolder(itemBinding.root) {
@@ -36,15 +36,19 @@ class CitaAdapter: RecyclerView.Adapter<CitaAdapter.CitaViewHolder>() {
 
     override fun onBindViewHolder(holder: CitaViewHolder, position: Int) {
         val citaActual = listaCitas[position]
-        holder.bind(citaActual)
+        if (citaActual != null) {
+            holder.bind(citaActual)
+        }
     }
 
     override fun getItemCount(): Int {
         return listaCitas.size
     }
 
-    fun setData(citas: List<Cita>) {
-        this.listaCitas=citas
+    fun setData(citas: List<Cita?>?) {
+        if (citas != null) {
+            this.listaCitas=citas
+        }
         notifyDataSetChanged() //Redibuja el adapter...
     }
 

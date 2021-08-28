@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.isc.petshopapp.R
 import com.isc.petshopapp.databinding.FragmentCalendarBinding
 import com.isc.petshopapp.model.Cita
@@ -52,8 +53,8 @@ class CalendarFragment : Fragment() {
         binding.btFecha.setText("" + dia.toString() + "/" + mes.toString() + "/" + anno)
 
         binding.btFecha.setOnClickListener { obtenerFecha() }
-        binding.btHoraIni.setOnClickListener { obtenerHora() }
-        binding.btHoraFin.setOnClickListener { obtenerHora() }
+        binding.btHoraIni.setOnClickListener { obtenerHora(1) }
+        binding.btHoraFin.setOnClickListener { obtenerHora(2) }
         binding.btCrearEvento.setOnClickListener { CrearEvento() }
         binding.cbTodoDia.setOnClickListener { fijarHora() }
 
@@ -99,7 +100,7 @@ class CalendarFragment : Fragment() {
         recogerFecha.show()
     }
 
-    fun obtenerHora() {
+    fun obtenerHora(tipo: Int) {
         val localTime: LocalTime = LocalTime.now()
         //Variables para obtener la fecha actual
         val hora: Int = localTime.getHour()
@@ -148,11 +149,12 @@ class CalendarFragment : Fragment() {
             calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.timeInMillis)
             calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.timeInMillis)
             calendarIntent.putExtra(CalendarContract.Events.TITLE, binding.etTitulo.text.toString())
-            calendarIntent.putExtra(Intent.EXTRA_EMAIL, "test@mail.com")
+            calendarIntent.putExtra(Intent.EXTRA_EMAIL, FirebaseAuth.getInstance().currentUser?.email)
             calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, descripcion)
 
-            val cita = Cita("",descripcion,titulo,calendarIntent.toString(),inicio,fin)
-            citaViewModel.addCita(cita)
+            val cita = Cita("",descripcion,titulo,"" + dia.toString() + "/" + mes.toString() + "/" + anno,
+                binding.btHoraIni.text.toString(),binding.btHoraFin.text.toString())
+            citaViewModel.addCita(cita, context)
 
             startActivity(calendarIntent)
             findNavController().navigate(R.id.action_nav_calendar_to_nav_ListCita)
