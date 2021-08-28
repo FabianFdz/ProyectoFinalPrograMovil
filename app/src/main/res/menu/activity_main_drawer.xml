@@ -10,7 +10,7 @@
             android:title="@string/menu_agendar_cita" />
 
         <item
-            android:id="@+id/edita_citas"
+            android:id="@+id/nav_ListCita"
             android:icon="@drawable/ic_baseline_web_24"
             android:title="@string/menu_citas" />
 

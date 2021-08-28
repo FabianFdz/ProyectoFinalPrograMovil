@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_calendar, R.id.edita_citas,
+                R.id.nav_calendar, R.id.nav_ListCita,
                 R.id.servicio01, R.id.ubicacionFragment
             ), drawerLayout
         )
