@@ -19,6 +19,7 @@ import com.isc.petshopapp.R
 import com.isc.petshopapp.adapter.ServicioAdapter
 import com.isc.petshopapp.databinding.FragmentServicio01Binding
 import com.isc.petshopapp.model.Response
+import com.isc.petshopapp.viewmodel.ServicioViewModel
 
 
 class Servicio01 : Fragment() {
@@ -46,32 +47,14 @@ class Servicio01 : Fragment() {
         reciclador.adapter = servicioAdapter
         reciclador.layoutManager = LinearLayoutManager(requireContext())
 
-        //myRef = Firebase.database.getReference("servicio")
-        //myRef.child("0").get().addOnSuccessListener {
-            //if(it.exists()){
-                //val nombre = it.child("nombre").value
-                //val descripcion = it.child("descripcion").value
-                //val imgUrl = it.child("imgUrl").value
-                //val precio = it.child("precio").value
-
-            //}
-        //}.addOnFailureListener{
-            //Toast.makeText(this,"There are no services",Toast.LENGTH_SHORT).show()
-        //}
-
         //llenado de recyclerView
-        //Obtener la info de la tabla lugar vía el ServicioViewModel
-        ServicioViewModel = ViewModelProvider(this)
+        //Obtener la info del collection service vía el ServicioViewModel
+        servicioViewModel = ViewModelProvider(this)
             .get(ServicioViewModel::class.java)
 
         //Ojo cómo se define la manera de actualzar...
         servicioViewModel.getAllData.observe(viewLifecycleOwner,{
                 servicios -> servicioAdapter.setData(servicios)})
-
-
-
-
-
 
         return root
     }

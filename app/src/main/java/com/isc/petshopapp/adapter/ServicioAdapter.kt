@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 
 class ServicioAdapter : RecyclerView.Adapter<ServicioAdapter.ServioViewHolder>() {
   //Se define la lista que se usa para contener la información de las personas (de la tabla)
-  private var listaServicios = emptyList<Servicio>()
+  private var listaServicios = emptyList<Servicio?>()
 
   //contenedor de vistas
   inner class ServioViewHolder(private val itemBinding: ServicioFilaBinding) :
@@ -42,7 +42,9 @@ class ServicioAdapter : RecyclerView.Adapter<ServicioAdapter.ServioViewHolder>()
   override fun onBindViewHolder(holder: ServioViewHolder, position: Int) {
     //para poner valor a la caja
     val servicioActual = listaServicios[position]
-    holder.bind(servicioActual)
+    if (servicioActual != null) {
+      holder.bind(servicioActual)
+    }
 
   }
 
@@ -51,8 +53,10 @@ class ServicioAdapter : RecyclerView.Adapter<ServicioAdapter.ServioViewHolder>()
 
   }
 
-  fun setData(servicios: List<Servicio>) {
-    this.listaServicios = servicios
+  fun setData(servicios: List<Servicio?>?) {
+    if (servicios != null) {
+      this.listaServicios = servicios
+    }
     notifyDataSetChanged() //Redibuja el adapter... o actualiza todo...
   }
 

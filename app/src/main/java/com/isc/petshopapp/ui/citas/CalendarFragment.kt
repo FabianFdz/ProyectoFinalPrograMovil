@@ -151,7 +151,7 @@ class CalendarFragment : Fragment() {
             calendarIntent.putExtra(Intent.EXTRA_EMAIL, "test@mail.com")
             calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, descripcion)
 
-            val cita = Cita(0,descripcion,titulo,calendarIntent.toString(),inicio,fin)
+            val cita = Cita("",descripcion,titulo,calendarIntent.toString(),inicio,fin)
             citaViewModel.addCita(cita)
 
             startActivity(calendarIntent)
