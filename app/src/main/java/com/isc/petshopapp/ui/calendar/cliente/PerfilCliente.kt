@@ -1,5 +1,6 @@
 package com.isc.petshopapp.ui.calendar.cliente
 
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.isc.petshopapp.R
 import com.isc.petshopapp.databinding.FragmentPerfilClienteBinding
@@ -34,10 +36,8 @@ class PerfilCliente : Fragment() {
     clienteViewModel = ViewModelProvider(this)
       .get(ClienteViewModel::class.java)
 
-    val context = this.context
-
-    val getCall = clienteViewModel.getCliente(context)
-    manageGetCliente(getCall)
+    val getCall = clienteViewModel.getCliente()
+    manageGetCliente(getCall, this.context)
 
     binding.btAgregar.setOnClickListener {
       findNavController().navigate(R.id.action_perfilCliente_to_nav_UpdateCliente)
@@ -46,7 +46,7 @@ class PerfilCliente : Fragment() {
     return root
   }
 
-  private fun manageGetCliente(getCall: Call<Cliente?>?) {
+  private fun manageGetCliente(getCall: Call<Cliente?>?, context: Context?) {
     if (getCall != null) {
       getCall.enqueue(object : Callback<Cliente?> {
         override fun onResponse(call: Call<Cliente?>, response: Response<Cliente?>) {
@@ -57,14 +57,19 @@ class PerfilCliente : Fragment() {
                 Cliente(id = FirebaseAuth.getInstance().currentUser?.email),
                 context
               )
-              val getCallAfterIns = clienteViewModel.getCliente(context)
-              manageGetCliente(getCallAfterIns)
+              val getCallAfterIns = clienteViewModel.getCliente()
+              manageGetCliente(getCallAfterIns, context)
             } else {
               binding.etNombre.setText(clienteViewModel.currCliente?.nombre)
               binding.etApellidos.setText(clienteViewModel.currCliente?.apellidos)
               binding.etCorreo.setText(FirebaseAuth.getInstance().currentUser?.email)
               if (clienteViewModel.currCliente?.imagenPath != "") {
-                binding.imagen.setImageBitmap(BitmapFactory.decodeFile(clienteViewModel.currCliente?.imagenPath))
+                if (context != null) {
+                  Glide.with(context)
+                    .load(clienteViewModel.currCliente?.imagenPath)
+                    .into(binding.imagen)
+                }
+                //binding.imagen.setImageBitmap(BitmapFactory.decodeFile(clienteViewModel.currCliente?.imagenPath))
               }
             }
           }

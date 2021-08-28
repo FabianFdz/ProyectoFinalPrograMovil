@@ -2,6 +2,7 @@ package com.isc.petshopapp.ui.calendar.cliente
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -19,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.isc.petshopapp.Apoyo.Apoyo
 import com.isc.petshopapp.BuildConfig
 import com.google.firebase.auth.FirebaseAuth
@@ -40,37 +42,37 @@ import java.io.File
 
 
 class UpdateCliente : Fragment() {
-    private var _binding: FragmentUpdateClienteBinding?=null
-    private val binding get() = _binding!!
+  private var _binding: FragmentUpdateClienteBinding? = null
+  private val binding get() = _binding!!
 
-    //Para registrar la imagen de persona
-    private lateinit var tomarFotoActivity: ActivityResultLauncher<Intent>
-    private lateinit var imagenFile: File
+  //Para registrar la imagen de persona
+  private lateinit var tomarFotoActivity: ActivityResultLauncher<Intent>
+  private lateinit var imagenFile: File
 
-    private lateinit var clienteViewModel: ClienteViewModel
+  private lateinit var clienteViewModel: ClienteViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentUpdateClienteBinding.inflate(inflater,
-            container,false)
-        val root: View = binding.root
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    _binding = FragmentUpdateClienteBinding.inflate(
+      inflater,
+      container, false
+    )
+    val root: View = binding.root
 
-        clienteViewModel = ViewModelProvider(this)
-            .get(ClienteViewModel::class.java)
+    clienteViewModel = ViewModelProvider(this)
+      .get(ClienteViewModel::class.java)
 
 
     clienteViewModel = ViewModelProvider(this)
       .get(ClienteViewModel::class.java)
 
-    val context = this.context
-
-    val getCall = clienteViewModel.getCliente(context)
-    manageGetCliente(getCall)
+    val getCall = clienteViewModel.getCliente()
+    manageGetCliente(getCall, this.context)
 
     binding.btAgregar.setOnClickListener {
-        subeFoto()
+      subeFoto()
     }
     binding.btFoto.setOnClickListener { tomarFoto() }
     binding.btRotateLeft.setOnClickListener {
@@ -91,55 +93,62 @@ class UpdateCliente : Fragment() {
     return root
   }
 
-    private fun subeFoto() {
-        if (imagenFile!= null && imagenFile!!.exists() && imagenFile!!.canRead()) {
-            //Defino el nombre de la imagen donde quedará en el Storage
-            val nombreArchivo = Apoyo.nombreSeguro("imagen_","jpg")
+  private fun subeFoto() {
+    if (imagenFile != null && imagenFile!!.exists() && imagenFile!!.canRead()) {
+      //Defino el nombre de la imagen donde quedará en el Storage
+      val nombreArchivo = Apoyo.nombreSeguro("imagen_", "jpg")
 
-            //Obtengo la ruta de donde se grabó la imagen tomada
-            val ruta = Uri.fromFile(imagenFile)
+      //Obtengo la ruta de donde se grabó la imagen tomada
+      val ruta = Uri.fromFile(imagenFile)
 
-            //Genero la referenia en el Storage
-            val referencia : StorageReference =
-                Firebase.storage.reference.child("imagenes/$nombreArchivo")
+      //Genero la referenia en el Storage
+      val referencia: StorageReference =
+        Firebase.storage.reference.child("imagenes/$nombreArchivo")
 
-            //Se inicia la subida del archivo al Firestore Storage
-            val subidaArchivo = referencia.putFile(ruta)
+      //Se inicia la subida del archivo al Firestore Storage
+      val subidaArchivo = referencia.putFile(ruta)
 
-            subidaArchivo.addOnSuccessListener {
-                val rutaImagenFirebase = referencia.downloadUrl
-                rutaImagenFirebase.addOnSuccessListener {
-                    Apoyo.muestraTexto(requireContext(),"Imagen subida...")
-                    val rutaImagen = it.toString()
-                    insertaCliente(rutaImagen)  //Se almacenará la info en Sqlite... local
-                }
-            }
-            subidaArchivo.addOnFailureListener() {
-                Apoyo.muestraTexto(requireContext(),"Error subiendo imagen...")
-                insertaCliente("Imagen no disponible")
-            }
-        } else {  //Si no existe o no se puede leer
-            insertaCliente("Imagen no disponible")
+      subidaArchivo.addOnSuccessListener {
+        val rutaImagenFirebase = referencia.downloadUrl
+        rutaImagenFirebase.addOnSuccessListener {
+          Apoyo.muestraTexto(requireContext(), "Imagen subida...")
+          val rutaImagen = it.toString()
+          insertaCliente(rutaImagen)  //Se almacenará la info en Sqlite... local
         }
-
+      }
+      subidaArchivo.addOnFailureListener() {
+        Apoyo.muestraTexto(requireContext(), "Error subiendo imagen...")
+        insertaCliente("Imagen no disponible")
+      }
+    } else {  //Si no existe o no se puede leer
+      insertaCliente("Imagen no disponible")
     }
 
-    private fun manageGetCliente (getCall: Call<Cliente?>?) {
+  }
+
+  private fun manageGetCliente(getCall: Call<Cliente?>?, context: Context?) {
     if (getCall != null) {
       getCall.enqueue(object : Callback<Cliente?> {
         override fun onResponse(call: Call<Cliente?>, response: Response<Cliente?>) {
           if (response.isSuccessful()) {
             clienteViewModel.currCliente = response.body()
             if (clienteViewModel.currCliente?.id == "") {
-              clienteViewModel.addCliente(Cliente(id = FirebaseAuth.getInstance().currentUser?.email), context)
-              val getCallAfterIns = clienteViewModel.getCliente(context)
-              manageGetCliente(getCallAfterIns)
+              clienteViewModel.addCliente(
+                Cliente(id = FirebaseAuth.getInstance().currentUser?.email),
+                context
+              )
+              val getCallAfterIns = clienteViewModel.getCliente()
+              manageGetCliente(getCallAfterIns, context)
             } else {
               binding.etNombre.setText(clienteViewModel.currCliente?.nombre)
               binding.etApellidos.setText(clienteViewModel.currCliente?.apellidos)
               binding.etCorreo.setText(FirebaseAuth.getInstance().currentUser?.email)
               if (clienteViewModel.currCliente?.imagenPath != "") {
-                binding.imagen.setImageBitmap(BitmapFactory.decodeFile(clienteViewModel.currCliente?.imagenPath))
+                if (context != null) {
+                  Glide.with(context)
+                    .load(clienteViewModel.currCliente?.imagenPath)
+                    .into(binding.imagen)
+                }
               }
             }
           }
@@ -168,7 +177,7 @@ class UpdateCliente : Fragment() {
 
   }
 
-  private fun insertaCliente(rutaFoto:String) {
+  private fun insertaCliente(rutaFoto: String) {
     val nombre = binding.etNombre.text.toString()
     val id = FirebaseAuth.getInstance().currentUser?.email
     val apellidos = binding.etApellidos.text.toString()
@@ -177,7 +186,7 @@ class UpdateCliente : Fragment() {
       if (imagenFile !== null) {
         cliente = Cliente(id, rutaFoto, nombre, apellidos)
       } else {
-        cliente = Cliente(id, "", nombre, apellidos,)
+        cliente = Cliente(id, "", nombre, apellidos)
       }
       clienteViewModel.updateCliente(cliente, this.context)
       Toast.makeText(

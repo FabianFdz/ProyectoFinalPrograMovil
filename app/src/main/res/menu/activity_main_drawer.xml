@@ -17,7 +17,7 @@
 
 
         <item
-            android:id="@+id/serviciosFragment"
+            android:id="@+id/servicio01"
             android:icon="@drawable/ic_servicio"
             android:title="@string/menu_servicios" />
 
