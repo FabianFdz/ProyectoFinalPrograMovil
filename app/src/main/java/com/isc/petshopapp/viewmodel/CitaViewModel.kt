@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.isc.petshopapp.data.CitaDatabase
 import com.isc.petshopapp.model.Cita
-import com.isc.petshopapp.repositorio.CitaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -14,27 +12,26 @@ import kotlinx.coroutines.launch
 class CitaViewModel (application : Application)
     : AndroidViewModel(application){
 
-    val getAllData: LiveData<List<Cita>>
-    private val repository: CitaRepository
+    //val getAllData: LiveData<List<Cita>>
 
     init{
-        val citaDao= CitaDatabase.getDatabase(application).citaDao()
-        repository = CitaRepository(citaDao)
-        getAllData = repository.getAllData
+        //val citaDao= CitaDatabase.getDatabase(application).citaDao()
+        //repository = CitaRepository(citaDao)
+        //getAllData = repository.getAllData
     }
     fun addCita(cita: Cita) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addCita(cita)
+            //repository.addCita(cita)
         }
     }
     fun deleteCita(cita: Cita) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteCita(cita)
+            //repository.deleteCita(cita)
         }
     }
     fun updateCita(cita: Cita) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateCita(cita)
+            //repository.updateCita(cita)
         }
     }
 

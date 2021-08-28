@@ -43,7 +43,6 @@
             android:inputType="textPersonName" />
 
 
-
         <EditText
             android:id="@+id/etCorreo"
             android:layout_width="match_parent"
@@ -51,6 +50,7 @@
             android:layout_marginTop="10sp"
             android:autofillHints="@string/et_Correo"
             android:background="#AFD6F4"
+            android:editable="true"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/et_Correo"
