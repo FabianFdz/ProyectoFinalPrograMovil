@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +22,9 @@ import androidx.navigation.fragment.findNavController
 import com.isc.petshopapp.Apoyo.Apoyo
 import com.isc.petshopapp.BuildConfig
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.isc.petshopapp.R
 import com.isc.petshopapp.databinding.FragmentUpdateClienteBinding
 import com.isc.petshopapp.model.Cliente
@@ -32,6 +37,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+
 
 class UpdateCliente : Fragment() {
     private var _binding: FragmentUpdateClienteBinding?=null
@@ -63,7 +69,9 @@ class UpdateCliente : Fragment() {
     val getCall = clienteViewModel.getCliente(context)
     manageGetCliente(getCall)
 
-    binding.btAgregar.setOnClickListener { insertaCliente() }
+    binding.btAgregar.setOnClickListener {
+        subeFoto()
+    }
     binding.btFoto.setOnClickListener { tomarFoto() }
     binding.btRotateLeft.setOnClickListener {
       binding.imagen.rotation = binding.imagen.rotation + 90f
@@ -83,7 +91,40 @@ class UpdateCliente : Fragment() {
     return root
   }
 
-  private fun manageGetCliente (getCall: Call<Cliente?>?) {
+    private fun subeFoto() {
+        if (imagenFile!= null && imagenFile!!.exists() && imagenFile!!.canRead()) {
+            //Defino el nombre de la imagen donde quedará en el Storage
+            val nombreArchivo = Apoyo.nombreSeguro("imagen_","jpg")
+
+            //Obtengo la ruta de donde se grabó la imagen tomada
+            val ruta = Uri.fromFile(imagenFile)
+
+            //Genero la referenia en el Storage
+            val referencia : StorageReference =
+                Firebase.storage.reference.child("imagenes/$nombreArchivo")
+
+            //Se inicia la subida del archivo al Firestore Storage
+            val subidaArchivo = referencia.putFile(ruta)
+
+            subidaArchivo.addOnSuccessListener {
+                val rutaImagenFirebase = referencia.downloadUrl
+                rutaImagenFirebase.addOnSuccessListener {
+                    Apoyo.muestraTexto(requireContext(),"Imagen subida...")
+                    val rutaImagen = it.toString()
+                    insertaCliente(rutaImagen)  //Se almacenará la info en Sqlite... local
+                }
+            }
+            subidaArchivo.addOnFailureListener() {
+                Apoyo.muestraTexto(requireContext(),"Error subiendo imagen...")
+                insertaCliente("Imagen no disponible")
+            }
+        } else {  //Si no existe o no se puede leer
+            insertaCliente("Imagen no disponible")
+        }
+
+    }
+
+    private fun manageGetCliente (getCall: Call<Cliente?>?) {
     if (getCall != null) {
       getCall.enqueue(object : Callback<Cliente?> {
         override fun onResponse(call: Call<Cliente?>, response: Response<Cliente?>) {
@@ -127,23 +168,23 @@ class UpdateCliente : Fragment() {
 
   }
 
-  private fun insertaCliente() {
+  private fun insertaCliente(rutaFoto:String) {
     val nombre = binding.etNombre.text.toString()
     val id = FirebaseAuth.getInstance().currentUser?.email
     val apellidos = binding.etApellidos.text.toString()
     if (validos(nombre, apellidos)) {
       var cliente: Cliente
       if (imagenFile !== null) {
-        cliente = Cliente(id, imagenFile?.absolutePath, nombre, apellidos)
+        cliente = Cliente(id, rutaFoto, nombre, apellidos)
       } else {
-        cliente = Cliente(id, "", nombre, apellidos)
+        cliente = Cliente(id, "", nombre, apellidos,)
       }
       clienteViewModel.updateCliente(cliente, this.context)
       Toast.makeText(
         requireContext(), getString(R.string.clienteadd),
         Toast.LENGTH_LONG
       ).show()
-      //findNavController().navigate(R.id.action_nav_UpdateCliente_to_nav_ListCliente)
+      findNavController().navigate(R.id.action_nav_UpdateCliente_to_perfilCliente)
     } else {
       Toast.makeText(
         requireContext(), getString(R.string.clientefail),

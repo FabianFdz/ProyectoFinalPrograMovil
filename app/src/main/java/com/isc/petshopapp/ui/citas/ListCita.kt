@@ -23,9 +23,9 @@ class ListCita : Fragment() {
             container,false)
         val root: View = binding.root
 
-        binding.btAddCita.setOnClickListener {
-            findNavController().navigate(R.id.action_nav_ListCita_to_nav_UpdateCita)
-        }
+        //binding.btAddCita.setOnClickListener {
+          //  findNavController().navigate(R.id.action_nav_ListCita_to_nav_UpdateCita)
+        //}
 
         return root
     }

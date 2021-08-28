@@ -44,14 +44,14 @@ class UpdateCita : Fragment() {
         val inicio=binding.etInicio.text.toString()
         val fin=binding.etFin.text.toString()
         if (validos(id,descripcion,titulo,fecha,inicio,fin)) {
-            val cita = Cita(0,descripcion,titulo,fecha,inicio,fin.toInt())
-            citaViewModel.addCita(cita)
-            Toast.makeText(requireContext(),getString(R.string.citaadd),
-                Toast.LENGTH_LONG).show()
-            findNavController().navigate(R.id.action_nav_UpdateCita_to_nav_ListCita)
+            //val cita = Cita(0,descripcion,titulo,fecha,inicio,fin.toInt())
+            //citaViewModel.addCita(cita)
+            //Toast.makeText(requireContext(),getString(R.string.citaadd),
+                //Toast.LENGTH_LONG).show()
+            //findNavController().navigate(R.id.action_nav_UpdateCita_to_nav_ListCita)
         } else {
-            Toast.makeText(requireContext(),getString(R.string.citafail),
-                Toast.LENGTH_LONG).show()
+            //Toast.makeText(requireContext(),getString(R.string.citafail),
+                //Toast.LENGTH_LONG).show()
         }
     }
 
