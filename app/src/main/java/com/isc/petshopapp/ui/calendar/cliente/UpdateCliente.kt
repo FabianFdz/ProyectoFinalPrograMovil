@@ -45,24 +45,6 @@ class UpdateCliente : Fragment() {
         clienteViewModel = ViewModelProvider(this)
             .get(ClienteViewModel::class.java)
 
-<<<<<<< HEAD
-        binding.btAgregar.setOnClickListener { insertaCliente() }
-=======
-        binding.btFoto.setOnClickListener { tomarFoto() }
-        binding.btRotateLeft.setOnClickListener {
-            binding.imagen.rotation = binding.imagen.rotation + 90f
-        }
-        binding.btRotateRight.setOnClickListener {
-            binding.imagen.rotation = binding.imagen.rotation - 90f
-        }
-
-        tomarFotoActivity =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    binding.imagen.setImageBitmap(BitmapFactory.decodeFile(imagenFile.absolutePath))
-                }
-            }
->>>>>>> 8fe0e69cd57bbe56b6633a80bfe81b3107cda971
 
         return root
     }
