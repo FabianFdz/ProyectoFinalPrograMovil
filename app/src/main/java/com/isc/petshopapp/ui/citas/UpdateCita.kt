@@ -44,7 +44,7 @@ class UpdateCita : Fragment() {
         val inicio=binding.etInicio.text.toString()
         val fin=binding.etFin.text.toString()
         if (validos(id,descripcion,titulo,fecha,inicio,fin)) {
-            val cita = Cita(0,descripcion,titulo,fecha,inicio,fin.toInt())
+            val cita = Cita(0,descripcion,titulo,fecha,inicio,fin)
             citaViewModel.addCita(cita)
             Toast.makeText(requireContext(),getString(R.string.citaadd),
                 Toast.LENGTH_LONG).show()
