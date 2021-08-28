@@ -8,41 +8,51 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.isc.petshopapp.R
 import com.isc.petshopapp.adapter.CitaAdapter
 import com.isc.petshopapp.databinding.FragmentListCitaBinding
+import com.isc.petshopapp.model.Cita
 import com.isc.petshopapp.viewmodel.CitaViewModel
 
 
-class ListCita :  Fragment() {
-    private var _binding: FragmentListCitaBinding?=null
-    private val binding get() = _binding!!
+class ListCita : Fragment() {
+  private var _binding: FragmentListCitaBinding? = null
+  private val binding get() = _binding!!
 
 
-    private lateinit var citaViewModel: CitaViewModel
+  private lateinit var citaViewModel: CitaViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentListCitaBinding.inflate(inflater,
-            container,false)
-        val root: View = binding.root
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    _binding = FragmentListCitaBinding.inflate(
+      inflater,
+      container, false
+    )
+    val root: View = binding.root
 
-        val citaAdapter = CitaAdapter()
-        val reciclador = binding.reciclador
-        reciclador.adapter = citaAdapter
-        reciclador.layoutManager = LinearLayoutManager(requireContext())
-
-
-        citaViewModel = ViewModelProvider(this)
-            .get(CitaViewModel::class.java)
+    val citaAdapter = CitaAdapter()
+    val reciclador = binding.reciclador
+    reciclador.adapter = citaAdapter
+    reciclador.layoutManager = LinearLayoutManager(requireContext())
 
 
-        citaViewModel.getAllData.observe(viewLifecycleOwner,{
-                citas -> citaAdapter.setData(citas)})
+    citaViewModel = ViewModelProvider(this)
+      .get(CitaViewModel::class.java)
 
 
-        return root
+    citaViewModel.getAllData.observe(viewLifecycleOwner, { citas -> filterAndShowCitas(citas, citaAdapter) })
+
+
+    return root
+  }
+
+  private fun filterAndShowCitas(citas: List<Cita?>?, citaAdapter: CitaAdapter) {
+    if (citas != null) {
+      val filteredCitas = citas.filter { it?.email == FirebaseAuth.getInstance().currentUser?.email }
+      citaAdapter.setData(filteredCitas)
     }
+  }
 }
