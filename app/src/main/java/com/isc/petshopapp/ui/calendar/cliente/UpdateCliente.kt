@@ -36,10 +36,10 @@ class UpdateCliente : Fragment() {
     }
 
     private fun insertaCliente() {
-        val cedula= binding.etCedula.text.toString()
+        val cedula= //binding.etCedula.text.toString()
         val nombre= binding.etNombre.text.toString()
         val apellidos=binding.etApellidos.text.toString()
-        val edad=binding.etEdad.text.toString()
+        val edad=  // binding.etEdad.text.toString()
         if (validos(cedula,nombre,apellidos,edad)) {
             val cliente = Cliente(0,cedula,nombre,apellidos,edad.toInt())
             clienteViewModel.addCliente(cliente)

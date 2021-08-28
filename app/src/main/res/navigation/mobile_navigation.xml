@@ -11,7 +11,7 @@
         android:label="@string/menu_agendar_cita"
         tools:layout="@layout/fragment_calendar" />
     <fragment
-        android:id="@+id/citasFragment"
+        android:id="@+id/nav_citas"
         android:name="com.isc.petshopapp.CitasFragment"
         android:label="Mis Citas"
         tools:layout="@layout/fragment_citas" />
