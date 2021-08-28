@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.isc.petshopapp.R
 import com.isc.petshopapp.databinding.FragmentCalendarBinding
 import com.isc.petshopapp.model.Cita
 import com.isc.petshopapp.viewmodel.CitaViewModel
@@ -153,6 +155,7 @@ class CalendarFragment : Fragment() {
             citaViewModel.addCita(cita)
 
             startActivity(calendarIntent)
+            findNavController().navigate(R.id.action_nav_calendar_to_nav_ListCita)
 
         }
     }
