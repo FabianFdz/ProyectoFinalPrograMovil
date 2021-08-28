@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ContactanosFragmento">
+
+    <ImageButton
+        android:id="@+id/imgTituloContactanos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EFC595"
+        android:clickable="false"
+        android:src="@drawable/ic_launcher02_foreground" />
+
+    <TextView
+        android:id="@+id/tvUbicanos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ubicanos"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <ImageButton
+        android:id="@+id/btMapa"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FBE1E1"
+        android:src="@drawable/ic_map" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/paginaWeb"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <ImageButton
+        android:id="@+id/btWeb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FBE1E1"
+        android:src="?android:attr/actionModeWebSearchDrawable" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="452dp"
+        android:src="@mipmap/ic_launcher_foreground" />
+
+</LinearLayout>

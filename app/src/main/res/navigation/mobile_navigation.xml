@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label="@string/contacto"
     app:startDestination="@id/servicio01">
 
     <fragment
         android:id="@+id/nav_calendar"
         android:name="com.isc.petshopapp.ui.citas.CalendarFragment"
         android:label="@string/menu_agendar_cita"
-        tools:layout="@layout/fragment_calendar" >
+        tools:layout="@layout/fragment_calendar">
         <action
             android:id="@+id/action_nav_calendar_to_nav_ListCita"
             app:destination="@id/nav_ListCita" />
@@ -46,7 +47,7 @@
         android:id="@+id/nav_ListCita"
         android:name="com.isc.petshopapp.ui.citas.ListCita"
         android:label="@string/menu_persona"
-        tools:layout="@layout/fragment_list_cita" >
+        tools:layout="@layout/fragment_list_cita">
         <action
             android:id="@+id/action_nav_ListCita_to_nav_UpdateCita"
             app:destination="@id/nav_UpdateCita" />
@@ -55,10 +56,15 @@
         android:id="@+id/nav_UpdateCita"
         android:name="com.isc.petshopapp.ui.citas.UpdateCita"
         android:label="@string/add_cita"
-        tools:layout="@layout/fragment_update_cita" >
+        tools:layout="@layout/fragment_update_cita">
         <action
             android:id="@+id/action_nav_UpdateCita_to_nav_ListCita"
             app:destination="@id/nav_ListCita" />
     </fragment>
+    <fragment
+        android:id="@+id/contactanosFragmento"
+        android:name="com.isc.petshopapp.ContactanosFragmento"
+        android:label="Contactanos"
+        tools:layout="@layout/fragment_contactanos" />
 
 </navigation>

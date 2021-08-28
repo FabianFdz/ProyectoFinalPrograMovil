@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_calendar, R.id.nav_ListCita,
-                R.id.servicio01, R.id.ubicacionFragment
+                R.id.servicio01, R.id.contactanosFragmento
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }

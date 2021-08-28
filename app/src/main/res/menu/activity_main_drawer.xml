@@ -22,7 +22,7 @@
             android:title="@string/menu_servicios" />
 
         <item
-            android:id="@+id/ubicacionFragment"
+            android:id="@+id/contactanosFragmento"
             android:icon="@drawable/ic_map"
             android:title="@string/menu_ubicacion" />
 

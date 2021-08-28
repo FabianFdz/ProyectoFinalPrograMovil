@@ -67,5 +67,8 @@
     <string name="add_cita">Agregar Cita</string>
     <string name="citaadd">Cita agregada</string>
     <string name="citafail">Faltan datos</string>
+    <string name="contacto">Contactanos</string>
+    <string name="ubicanos">Ubicanos</string>
+    <string name="paginaWeb">Pagina Web</string>
 
 </resources>
