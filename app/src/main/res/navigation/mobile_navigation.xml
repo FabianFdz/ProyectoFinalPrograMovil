@@ -9,7 +9,11 @@
         android:id="@+id/nav_calendar"
         android:name="com.isc.petshopapp.ui.citas.CalendarFragment"
         android:label="@string/menu_agendar_cita"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_nav_calendar_to_nav_ListCita"
+            app:destination="@id/nav_ListCita" />
+    </fragment>
     <fragment
         android:id="@+id/ubicacionFragment"
         android:name="com.isc.petshopapp.UbicacionFragment"

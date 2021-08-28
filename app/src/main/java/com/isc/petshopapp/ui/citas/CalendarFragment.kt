@@ -9,7 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.isc.petshopapp.R
 import com.isc.petshopapp.databinding.FragmentCalendarBinding
+import com.isc.petshopapp.model.Cita
+import com.isc.petshopapp.viewmodel.CitaViewModel
 import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
@@ -28,6 +33,7 @@ class CalendarFragment : Fragment() {
     val tipo = 0
 
     val local: LocalDate = LocalDate.now()
+    private lateinit var citaViewModel: CitaViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +42,9 @@ class CalendarFragment : Fragment() {
     ): View {
         _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        citaViewModel = ViewModelProvider(this)
+            .get(CitaViewModel::class.java)
 
         mes = local.getMonthValue()
         dia = local.getDayOfMonth()
@@ -132,13 +141,22 @@ class CalendarFragment : Fragment() {
             beginTime[anno, mes - 1, dia, hora_ini] = minu_ini
             endTime[anno, mes - 1, dia, hora_fin] = minu_fin
 
+            val inicio =beginTime.toString()
+            val fin = endTime.toString()
+            val fecha = binding.btFecha.setText("" + dia.toString() + "/" + mes.toString() + "/" + anno)
+
             calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.timeInMillis)
             calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.timeInMillis)
             calendarIntent.putExtra(CalendarContract.Events.TITLE, binding.etTitulo.text.toString())
             calendarIntent.putExtra(Intent.EXTRA_EMAIL, "test@mail.com")
             calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, descripcion)
 
+            val cita = Cita(0,descripcion,titulo,calendarIntent.toString(),inicio,fin)
+            citaViewModel.addCita(cita)
+
             startActivity(calendarIntent)
+            findNavController().navigate(R.id.action_nav_calendar_to_nav_ListCita)
+
         }
     }
 
