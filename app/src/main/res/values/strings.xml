@@ -57,6 +57,7 @@
     <string name="et_Correo">Correo Electronico</string>
     <string name="menu_perfil">Perfil</string>
     <string name="Actulizar_cliente">Actulizar perfil</string>
+    <string name="etID">"ID "</string>
 
 
 </resources>

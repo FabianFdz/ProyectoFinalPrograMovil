@@ -45,6 +45,9 @@ class UpdateCliente : Fragment() {
         clienteViewModel = ViewModelProvider(this)
             .get(ClienteViewModel::class.java)
 
+<<<<<<< HEAD
+        binding.btAgregar.setOnClickListener { insertaCliente() }
+=======
         binding.btFoto.setOnClickListener { tomarFoto() }
         binding.btRotateLeft.setOnClickListener {
             binding.imagen.rotation = binding.imagen.rotation + 90f
@@ -59,6 +62,7 @@ class UpdateCliente : Fragment() {
                     binding.imagen.setImageBitmap(BitmapFactory.decodeFile(imagenFile.absolutePath))
                 }
             }
+>>>>>>> 8fe0e69cd57bbe56b6633a80bfe81b3107cda971
 
         return root
     }
@@ -79,10 +83,10 @@ class UpdateCliente : Fragment() {
     }
 
     private fun insertaCliente() {
-        val cedula="" //binding.etCedula.text.toString()
-        val nombre="" //binding.etNombre.text.toString()
-        val apellidos="" //binding.etApellidos.text.toString()
-        val edad="" //binding.etEdad.text.toString()
+        val cedula= //binding.etCedula.text.toString()
+        val nombre= binding.etNombre.text.toString()
+        val apellidos=binding.etApellidos.text.toString()
+        val edad=  // binding.etEdad.text.toString()
         if (validos(cedula,nombre,apellidos,edad)) {
             val cliente = Cliente(0,cedula,nombre,apellidos,edad.toInt())
             clienteViewModel.addCliente(cliente)
