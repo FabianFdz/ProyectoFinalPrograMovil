@@ -2,7 +2,6 @@ package com.isc.petshopapp
 
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_calendar, R.id.citasFragment, R.id.productosFragment,
+                R.id.nav_calendar, R.id.nav_citas, R.id.productosFragment,
                 R.id.serviciosFragment, R.id.ubicacionFragment
             ), drawerLayout
         )
