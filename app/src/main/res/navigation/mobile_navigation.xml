@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/nav_ListCita"
         android:name="com.isc.petshopapp.ui.citas.ListCita"
-        android:label="fragment_list_cita"
+        android:label="@string/menu_persona"
         tools:layout="@layout/fragment_list_cita" >
         <action
             android:id="@+id/action_nav_ListCita_to_nav_UpdateCita"
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/nav_UpdateCita"
         android:name="com.isc.petshopapp.ui.citas.UpdateCita"
-        android:label="fragment_update_cita"
+        android:label="@string/add_cita"
         tools:layout="@layout/fragment_update_cita" >
         <action
             android:id="@+id/action_nav_UpdateCita_to_nav_ListCita"
