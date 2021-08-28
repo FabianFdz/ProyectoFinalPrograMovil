@@ -8,4 +8,12 @@ class ApiUtils {
   fun getClienteService(): ClienteService? {
     return ApiClient().getClient(API_URL)?.create(ClienteService::class.java)
   }
+
+  fun getServicioService(): ServicioService? {
+    return ApiClient().getClient(API_URL)?.create(ServicioService::class.java)
+  }
+
+  fun getCitaService(): CitaService? {
+    return ApiClient().getClient(API_URL)?.create(CitaService::class.java)
+  }
 }

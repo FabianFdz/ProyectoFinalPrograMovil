@@ -25,7 +25,6 @@ class Servicio01 : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var myRecyclerView: RecyclerView
-    private lateinit var myRef: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +41,7 @@ class Servicio01 : Fragment() {
         reciclador.adapter = servicioAdapter
         reciclador.layoutManager = LinearLayoutManager(requireContext())
 
-        myRef = Firebase.database.getReference("servicio")
+        /*myRef = Firebase.database.getReference("servicio")
         myRef.child("0").get().addOnSuccessListener {
             if(it.exists()){
                 val nombre = it.child("nombre").value
@@ -52,10 +51,8 @@ class Servicio01 : Fragment() {
 
             }
         }.addOnFailureListener{
-            //Toast.makeText(this,"There are no services",Toast.LENGTH_SHORT).show()
-        }
-
-
+            Toast.makeText(this.context,"There are no services",Toast.LENGTH_SHORT).show()
+        }*/
 
         return root
     }

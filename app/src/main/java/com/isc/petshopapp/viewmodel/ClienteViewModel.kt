@@ -26,42 +26,9 @@ class ClienteViewModel(application: Application)
         clienteService =
             ApiUtils().getClienteService()!! // ClienteDatabase.getDatabase(application).clienteDao()
     }
-    /*fun addCliente(cliente: Cliente) {
-        viewModelScope.launch(Dispatchers.IO) {
-            clienteService.addCliente(cliente)
-        }
-    }
-    fun deleteCliente(cliente: Cliente) {
-        viewModelScope.launch(Dispatchers.IO) {
-            cliente.id?.let { clienteService.deleteCliente(it) }
-        }
-    }
-    fun updateCliente(cliente: Cliente) {
-        viewModelScope.launch(Dispatchers.IO) {
-            clienteService.updateCliente(cliente)
-        }
-    }*/
 
-    fun getCliente(context: Context?): Call<Cliente?>? {
+    fun getCliente(): Call<Cliente?>? {
         return clienteService.getCliente(FirebaseAuth.getInstance().currentUser?.email)
-        //val call: Call<Cliente?>? = clienteService.getCliente(FirebaseAuth.getInstance().currentUser?.email)
-       /* if (call != null) {
-            call.enqueue(object : Callback<Cliente?> {
-                override fun onResponse(call: Call<Cliente?>, response: Response<Cliente?>) {
-                    if (response.isSuccessful()) {
-                        currCliente = response.body()
-                        if (currCliente?.id == "") {
-                            addCliente(Cliente(id = FirebaseAuth.getInstance().currentUser?.email), context)
-                        }
-                        // listView.setAdapter(ClienteAdapter(this@MainActivity, R.layout.list_user, list))
-                    }
-                }
-
-                override fun onFailure(call: Call<Cliente?>, t: Throwable) {
-                    t.message?.let { Log.e("ERROR: ", it) }
-                }
-            })
-        }*/
     }
 
     fun addCliente(c: Cliente?, context: Context?) {
@@ -94,27 +61,6 @@ class ClienteViewModel(application: Application)
                         Toast.makeText(
                             context,
                             "Cliente updated successfully!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<Cliente?>, t: Throwable) {
-                    Log.e("ERROR: ", t.message!!)
-                }
-            })
-        }
-    }
-
-    fun deleteCliente(id: String, context: Context?) {
-        val call: Call<Cliente?>? = clienteService.deleteCliente(id)
-        if (call != null) {
-            call.enqueue(object : Callback<Cliente?> {
-                override fun onResponse(call: Call<Cliente?>, response: Response<Cliente?>) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(
-                            context,
-                            "Cliente deleted successfully!",
                             Toast.LENGTH_SHORT
                         ).show()
                     }

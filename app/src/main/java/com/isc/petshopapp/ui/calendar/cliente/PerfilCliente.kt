@@ -34,9 +34,7 @@ class PerfilCliente : Fragment() {
     clienteViewModel = ViewModelProvider(this)
       .get(ClienteViewModel::class.java)
 
-    val context = this.context
-
-    val getCall = clienteViewModel.getCliente(context)
+    val getCall = clienteViewModel.getCliente()
     manageGetCliente(getCall)
 
     binding.btAgregar.setOnClickListener {
@@ -57,7 +55,7 @@ class PerfilCliente : Fragment() {
                 Cliente(id = FirebaseAuth.getInstance().currentUser?.email),
                 context
               )
-              val getCallAfterIns = clienteViewModel.getCliente(context)
+              val getCallAfterIns = clienteViewModel.getCliente()
               manageGetCliente(getCallAfterIns)
             } else {
               binding.etNombre.setText(clienteViewModel.currCliente?.nombre)
